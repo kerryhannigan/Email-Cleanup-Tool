@@ -1,0 +1,15 @@
+//labels the first 100 unread emails in inbox that aren't starred or marked as important with the label "To delete"
+function labelUnread() {
+  var search = 'in:inbox is:unread -in:starred -in:important'
+  var page_size = 100
+  var threads = GmailApp.search(search, 0, page_size)
+  var label = GmailApp.getUserLabelByName("To delete")
+  label.addToThreads(threads)
+}
+
+//deletes the emails with the "To delete" label 
+function deleteUnread() {
+  var threads = GmailApp.search("in:to-delete");
+    for (var i = 0; i < threads.length; i++) 
+      threads[i].moveToTrash();
+}
