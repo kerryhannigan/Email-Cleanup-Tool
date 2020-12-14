@@ -1,0 +1,28 @@
+//labels the first 100 unread emails in inbox that aren't starred with the label "To delete" and moves to archive
+function labelUnread() {
+  var search = 'in:inbox -in:starred is:unread'
+  var page_size = 100
+  var threads = GmailApp.search(search, 0, page_size)
+  var label = GmailApp.getUserLabelByName("To delete")
+  label.addToThreads(threads)
+   for (var i = 0; i < threads.length; i++)
+   threads[i].moveToArchive(); 
+}
+
+//labels the first 100 read emails in inbox that aren't starred with the label "To delete" and moves to archive
+function labelRead() {
+  var search = 'in:inbox -in:starred is:read'
+  var page_size = 100
+  var threads = GmailApp.search(search, 0, page_size)
+  var label = GmailApp.getUserLabelByName("To delete")
+  label.addToThreads(threads)
+   for (var i = 0; i < threads.length; i++)
+   threads[i].moveToArchive();
+}
+
+//deletes the emails with the "To delete" label
+function deleteToDelete() {
+  var threads = GmailApp.search("in:to-delete");
+    for (var i = 0; i < threads.length; i++) 
+      threads[i].moveToTrash();
+}
