@@ -1,0 +1,40 @@
+This tool can be used for a large clean up project or for daily maintainance of a gmail inbox. 
+While not the least time consuming solution, it is designed to delete large chunks of emails
+while keeping important ones and allowing a user to preview the deleted emails beforehand,
+to ensure that all valuable emails are kept. 
+
+It starts with the assumption that all unread (and unstarred) emails in your inbox are invaluable (which was true for my inbox).
+If this is not the case, then be sure to thoroughly preview each chunk of emails before deleting. 
+
+To get started, paste the code into a new project at https://script.google.com/home, then hit save (floppy disk icon).
+
+For a large clean up: 
+
+Unread emails
+
+1. Run the function labelUnread to label the first 100 unread emails in your inbox with the desired label (must be created beforehand in gmail or with a script;
+the default label is "To delete"). This function also moves the emails to archive (removed from inbox). 
+*It's important to make sure the emails are moved to archive after labelling, otherwise the script cannot continue to run once it reaches the 100 email maximum.
+
+2. After making sure the first 100 unread and unstarred emails are labelled and removed from the inbox, preview the emails that are to be deleted.
+If satisfied with the results, run the deleteToDelete function, or simply click select all and delete in gmail. 
+
+3. Set up triggers. To keep the labelUnread function running, click the clock symbol in the script editor toolbar and click Add Trigger. 
+Set the function to run every minute, after a while all of your unread and unstarred emails should be labelled, archived, and ready for final review before deletion. 
+
+4. Delete all unread emails, either using select all in gmail or running the deleteToDelete function with a trigger.
+
+5. At this point you should have only opened emails in your inbox. Proceeding from here will be different for everyone depending on what kind of emails you intend to keep. 
+I would recommend running the labelRead function a few times and then scanning through the batch to see if there are important emails to keep, starring the ones you want to keep.
+Check the notes at the bottom to see other ways you can filter the types of emails that get labelled for deletion. Otherwise, the labelRead function is used the same way
+as labelUnread. 
+
+Notes: The var search string can include anything you can type into the gmail search bar.
+Try adding "-from:example@gmail.com" to exclude any emails from that sender (the '-' means it will be excluded from the search),
+or simply adding a word, such as "-pictures", which will exclude any emails containing the word "pictures". 
+
+Other ways to use this tool:
+a) Create a second label for previously read emails, to be able to sort and preview read and unread emails separately. 
+b) If you use the "important" tag in gmail, add "-in:important" to the var search string so that no emails tagged important will be deleted.
+
+I will add more to this at a later time, including how to use the tool for daily mantainance. 
