@@ -20,6 +20,29 @@ function labelRead() {
    threads[i].moveToArchive();
 }
 
+//labels the first 100 emails in inbox that have the word receipt(s) in the body or subject wit the label Receipts
+function labelReceipts() {
+  var search = 'in:inbox receipt OR receipts OR subject:receipt OR subject:receipts'
+  var page_size = 100
+  var threads = GmailApp.search(search, 0, page_size)
+  var label = GmailApp.getUserLabelByName("Receipts")
+  label.addToThreads(threads)
+    for (var i = 0; i < threads.length; i++)
+    threads[i].moveToArchive();
+ }
+ 
+//for payment reminders. labels the first 100 emails in inbox that have the words "payment due" in the subject with the label "Bills".
+//needs refinement, maybe add keyword "bill"
+function labelPayment() {
+  var search = 'in:inbox subject:payment due'
+  var page_size = 100
+  var threads = GmailApp.search(search, 0, page_size)
+  var label = GmailApp.getUserLabelByName("Bills")
+  label.addToThreads(threads)
+    for (var i = 0; i < threads.length; i++)
+    threads[i].moveToArchive();
+}
+
 //deletes the emails with the "To delete" label
 function deleteToDelete() {
   var threads = GmailApp.search("in:to-delete");
